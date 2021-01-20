@@ -29,6 +29,7 @@ let as = [];
 let isr = [];
 async function handleAllURLs() {
   for (let item in search_urls) {
+    console.log(item);
     let data = await getDataFromURL(item);
 
     // Loop through each item on page
@@ -83,7 +84,7 @@ async function getDataFromURL(item) {
   var item_url_dict = search_urls[item];
   var item_link = item_url_dict["link"];
   try {
-    let response = await axios.get(item_link);
+    let response = await axios.get(item_link, {headers: {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/74.0.3729.157 Safari/537.36'}});
     let redirect_count = response.request._redirectable._redirectCount;
     var item_type = item_url_dict["type"];
 
